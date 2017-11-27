@@ -17,11 +17,15 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
       python-all \
       rlwrap \
       nano \
+      libffi-dev \
+      libssl-dev \ 
+      libpython2.7-dev \
       jq && \
      curl https://bootstrap.pypa.io/get-pip.py > get-pip.py && \
      python get-pip.py && \ 
      rm -f get-pip.py && \
-     pip install --upgrade pip ansible netaddr==0.7.18 ansible --no-cache-dir && \
+     pip install --upgrade pip netaddr==0.7.18 cryptography cffi --no-cache-dir && \
+     pip  install ansible==2.3.0 --no-cache-dir && \
      curl https://deb.nodesource.com/node_6.x/pool/main/n/nodejs/nodejs_6.11.2-1nodesource1~jessie1_amd64.deb > node.deb && \
      dpkg -i node.deb && \
       rm node.deb && \

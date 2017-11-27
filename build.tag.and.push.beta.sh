@@ -1,7 +1,7 @@
 #!/bin/bash
 CURRENT=$(date "+%Y%m%d%H%M")
 
-docker build --compress -t kthazurecli:$CURRENT-beta -t kthazurecli:latest Dockerfile.beta
+docker build --compress -t kthazurecli:$CURRENT-beta -t kthazurecli:latest .
 
 #Tagging images for publishing to dockerhub
 #docker image tag kthazurecli:$CURRENT-beta  kthse/kthazurecli:$CURRENT-beta
