@@ -35,5 +35,5 @@ mkdir ~/everest-secrets
 
 Exekvera containern och montera lokala ssh nycklar i readwrite läge
 ```
-docker run -it -v ~/.ssh:/root/.ssh -v ~/git:/root/git -v ~/everest-secrets:/root/everest-secrets:ro kthse/kthazurecli:latest
+docker run -it --rm -v ~/.ssh:/root/.ssh -v ~/git:/root/git -v ~/everest-secrets:/root/everest-secrets:ro kthse/kthazurecli:latest
 ```
