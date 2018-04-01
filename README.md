@@ -4,6 +4,8 @@ Innehåller dockerfile för att skapa upp kthazurecli v1 med KTH beroenden
 
 Detta är V1 versionen av cli:t för att kunna administrera från Mac/Lin/Windows utan att behöva installera alla komponenterna på sin dator.
 
+V2 av azure cli:et är nu tillgängligt i denna image.
+
 ## Prereqs
 Man måste se till att installera Docker for Mac/Windows för att kunna köra docker på sin dator. 
 Linux behöver ha docker installerat. 
