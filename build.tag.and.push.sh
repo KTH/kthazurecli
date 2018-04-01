@@ -1,6 +1,8 @@
 #!/bin/bash
 CURRENT=$(date "+%Y%m%d%H%M")
 
+docker pull debian:jessie
+
 docker build --compress -t kthazurecli:$CURRENT -t kthazurecli:latest .
 
 #Tagging images for publishing to dockerhub
