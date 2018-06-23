@@ -21,7 +21,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
       openssh-client \
       jq && \
       echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ jessie main" | tee /etc/apt/sources.list.d/azure-cli.list && \
-     curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - && \
+     curl -L https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
      apt-get update -qq && \
      apt-get install -qqy --no-install-recommends azure-cli && \
      curl https://bootstrap.pypa.io/get-pip.py > get-pip.py && \
