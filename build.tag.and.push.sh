@@ -2,19 +2,19 @@
 CURRENT=$(date "+%Y%m%d%H%M")
 
 # Remove unused images
-docker image prune
+docker image prune -f
 
 # Remove stopped containers.    
-docker container prune
+docker container prune -f
 
 # Remove unused volumes
-docker volume prune
+docker volume prune -f
 
 # Remove unused networks
-docker network prune
+docker network prune -f
 
 # Command to run all prunes:  Use with caution
-#docker system prune
+#docker system prune -f
 
 #Pulling the latest debian:jessie
 docker pull debian:jessie
