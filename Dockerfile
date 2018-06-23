@@ -7,6 +7,7 @@ ENV EDITOR vim
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
     apt-get update -qq && \
+    apt-get upgrade -y && \
     apt-get install -qqy --no-install-recommends \
       apt-transport-https \
       build-essential \
@@ -45,5 +46,9 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
       rm -rf /root/.pip/cache && \
       rm -rf /var/lib/apt/lists/* && \
       rm -rf /var/cache/apt && \
+      rm -rf /usr/share/locale/* && \
+      rm -rf /var/cache/debconf/*-old && \
+      rm -rf /var/lib/apt/lists/* && \
+      rm -rf /usr/share/doc/* && \
       rm -rf /tmp/*
 
