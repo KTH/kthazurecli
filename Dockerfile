@@ -20,6 +20,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
       rlwrap \
       nano \
       openssh-client \
+      gnupg \
       jq && \
       AZ_REPO=$(lsb_release -cs) && \
       echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | tee /etc/apt/sources.list.d/azure-cli.list && \
@@ -30,9 +31,9 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
      python get-pip.py && \ 
      rm -f get-pip.py && \
      pip install --upgrade pip netaddr==0.7.18 cryptography cffi ansible --no-cache-dir && \
-     curl https://deb.nodesource.com/node_6.x/pool/main/n/nodejs/nodejs_6.11.2-1nodesource1~jessie1_amd64.deb > node.deb && \
-     dpkg -i node.deb && \
-      rm node.deb && \
+     curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
+     apt-get install -y nodejs -qqy \
+     npm install npm --global --upgrade \
       npm install --global azure-cli && \
       azure --completion >> ~/azure.completion.sh && \
       echo 'source ~/azure.completion.sh' >> ~/.bashrc && \
