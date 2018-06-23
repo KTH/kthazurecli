@@ -7,14 +7,13 @@ ENV EDITOR vim
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
     apt-get update -qq && \
     apt-get dist-upgrade -y && \
-    apt-get install -qqy apt-utils && \
+    apt-get install -qqy apt-utils dialog lsb-release && \
     apt-get install -qqy --no-install-recommends \
       apt-transport-https \
       build-essential \
       curl \
       ca-certificates \
       git \
-      lsb-release \
       python-all \
       rlwrap \
       nano \
@@ -24,7 +23,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
       echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | tee /etc/apt/sources.list.d/azure-cli.list && \
      curl -L https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
      apt-get update -qq && \
-     apt-get install -qqy --no-install-recommends azure-cli dialog gnupg && \
+     apt-get install -qqy --no-install-recommends azure-cli gnupg && \
      curl https://bootstrap.pypa.io/get-pip.py > get-pip.py && \
      python get-pip.py && \ 
      rm -f get-pip.py && \
