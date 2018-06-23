@@ -7,7 +7,7 @@ ENV EDITOR vim
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
     apt-get update -qq && \
-    apt-get upgrade -y && \
+    apt-get dist-upgrade -y && \
     apt-get install -qqy --no-install-recommends \
       apt-transport-https \
       build-essential \
