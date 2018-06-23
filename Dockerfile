@@ -19,13 +19,12 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
       rlwrap \
       nano \
       openssh-client \
-      gnupg \
       jq && \
       AZ_REPO=$(lsb_release -cs) && \
       echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | tee /etc/apt/sources.list.d/azure-cli.list && \
      curl -L https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
      apt-get update -qq && \
-     apt-get install -qqy --no-install-recommends azure-cli dialog && \
+     apt-get install -qqy --no-install-recommends azure-cli dialog gnupg && \
      curl https://bootstrap.pypa.io/get-pip.py > get-pip.py && \
      python get-pip.py && \ 
      rm -f get-pip.py && \
