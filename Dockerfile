@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:jessie
 
 LABEL maintainer="MICHAEL@KTH.SE"
 
@@ -7,13 +7,13 @@ ENV EDITOR vim
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
     apt-get update -qq && \
     apt-get dist-upgrade -y && \
-    apt-get install -qqy apt-utils dialog lsb-release && \
     apt-get install -qqy --no-install-recommends \
       apt-transport-https \
       build-essential \
       curl \
       ca-certificates \
       git \
+      lsb-release \
       python-all \
       rlwrap \
       nano \
@@ -23,21 +23,20 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
       echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | tee /etc/apt/sources.list.d/azure-cli.list && \
      curl -L https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
      apt-get update -qq && \
-     apt-get install -qqy --no-install-recommends azure-cli gnupg && \
+     apt-get install -qqy --no-install-recommends azure-cli && \
      curl https://bootstrap.pypa.io/get-pip.py > get-pip.py && \
      python get-pip.py && \ 
      rm -f get-pip.py && \
      pip install --upgrade pip netaddr==0.7.18 cryptography cffi ansible --no-cache-dir && \
-     curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
-     apt-get install -y nodejs -qqy \
-     npm install npm --global --upgrade \
+     curl https://deb.nodesource.com/node_6.x/pool/main/n/nodejs/nodejs_6.11.2-1nodesource1~jessie1_amd64.deb > node.deb && \
+     dpkg -i node.deb && \
+      rm node.deb && \
       npm install --global azure-cli && \
       azure --completion >> ~/azure.completion.sh && \
       echo 'source ~/azure.completion.sh' >> ~/.bashrc && \
       azure telemetry --disable && \
       azure config mode arm && \
       apt-get update -qq && \
-      apt-get dist-upgrade -qqy && \
       apt-get autoremove -qqy && \
       apt-get clean -qqy && \
       apt-get purge -y $(apt-cache search '~c' | awk '{ print $2 }') && \
@@ -52,4 +51,3 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
       rm -rf /var/lib/apt/lists/* && \
       rm -rf /usr/share/doc/* && \
       rm -rf /tmp/*
-
