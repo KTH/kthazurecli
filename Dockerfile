@@ -1,5 +1,5 @@
 
-FROM debian:jessie
+FROM debian:stretch
 
 LABEL maintainer="MICHAEL@KTH.SE"
 
@@ -9,6 +9,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
     apt-get update -qq && \
     apt-get dist-upgrade -y && \
     apt-get install -qqy --no-install-recommends \
+      apt-utils \
       apt-transport-https \
       build-essential \
       curl \
